@@ -91,6 +91,8 @@ node_modules/
 Results/
 result_images/
 
-# Compiled CSS (keep source SCSS)
+# Compiled CSS from build tools (keep source SCSS and static CSS)
 css/
-static/css/style.css
+# But allow static CSS files that are needed
+!static/css/
+!static/css/**
