@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- bootstrap grid css -->
+    <link rel="stylesheet" href="static/css/plugins/bootstrap-grid.css">
+    <!-- font awesome css -->
+    <link rel="stylesheet" href="static/css/plugins/font-awesome.min.css">
+    <!-- swiper css -->
+    <link rel="stylesheet" href="static/css/plugins/swiper.min.css">
+    <!-- fancybox css -->
+    <link rel="stylesheet" href="static/css/plugins/fancybox.min.css">
+    <!-- ashley scss -->
+    <link rel="stylesheet" href="static/css/style.css">
+    <!-- page name -->
+    <title>PromoGen</title>
+
+</head>
+
+    <body>
+        
+            <div class="branding">
+            Empowering Creativity<br>One Ad at a time.
+            </div>
+        
+            <div class="left-panel">
+                <h1>
+                    Enter <span>a prompt,</span><br>
+                    <strong>Generate</strong> <span>an Ad.</span>
+                </h1>
+                <div>
+                    <form action="/team" method="POST">
+                        Company Name:<br>
+                        <input type="text" name="company_name"><br><br>
+                    
+                        Product Name:<br>
+                        <input type="text" name="product_name"><br><br>
+                    
+                        Product Description:<br>
+                        <textarea name="product_description" rows="5" cols="50"></textarea><br><br>
+                    
+                        <input type="submit" value="Generate Ad" data-no-swup class="btn1">
+                    </form>
+                    
+                    
+                        
+            
+                </div>
+            </div>
+                    
+        
+            <div class="right-panel">
+            <div class="ad-output" id="adOutput">
+                <div class="flex">
+                {% if ad_script and cta %}
+                            <div style="background-color: #f7f7f7; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+                                <h2>📢 Ad Script:</h2>
+                                <h4><p>{{ ad_script }}</p></h4>
+                    
+                                <h2>✅ Call to Action:</h2>
+                                <h4><p>{{ cta }}</p></h4>
+                            </div>
+                        {% else %}
+                            <p style="color: #999;">Generated ad content will appear here after submission.</p>
+                        {% endif %}
+                </div>
+                <!-- Generated ad will appear here -->
+            </div>
+            </div>
+        
+            <style>
+            .flex{
+            padding: 250px;
+            position: absolute;
+            width: 1000px;
+            padding-left: 70px;
+            }
+            
+            </style>
+        
+    
+
+    </body>
+
+</html>

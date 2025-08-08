@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ad Generator</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <!-- bootstrap grid css -->
+  <link rel="stylesheet" href="static/css/plugins/bootstrap-grid.css">
+  <!-- font awesome css -->
+  <link rel="stylesheet" href="static/css/plugins/font-awesome.min.css">
+  <!-- swiper css -->
+  <link rel="stylesheet" href="static/css/plugins/swiper.min.css">
+  <!-- fancybox css -->
+  <link rel="stylesheet" href="static/css/plugins/fancybox.min.css">
+  <!-- ashley scss -->
+  <link rel="stylesheet" href="static/css/style.css">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      background-color: #f2f2f2;
+      color: #000;
+      display: flex;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .left-panel, .right-panel {
+      padding: 60px 40px;
+      flex: 1;
+    }
+
+    .left-panel {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background-color: #f2f2f2;
+    }
+
+    .left-panel h1 {
+      font-size: 48px;
+      font-weight: 700;
+      margin-bottom: 40px;
+    }
+
+    .left-panel h1 span {
+      font-weight: 400;
+    }
+
+    .input-field {
+        font-family: inherit;
+        font-size: 16px;
+        padding: 33px;
+        border: 1px solid #ccc;
+        border-radius: 50px;
+        width: 100%;
+        box-sizing: border-box;
+        background: white;
+        margin-bottom: 20px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        resize: vertical; /* For textarea fields */
+    }
+
+    .right-panel {
+      background-color: #ffffff;
+      border-left: 1px solid #ddd;
+      overflow-y: auto;
+    }
+
+    .ad-output {
+      font-size: 18px;
+      line-height: 1.6;
+      color: #333;
+    }
+
+    .branding {
+      position: absolute;
+      top: 30px;
+      right: 50px;
+      font-size: 12px;
+      color: #888;
+      text-align: right;
+    }
+    .btn1{
+      cursor: pointer;
+      display: -webkit-inline-box;
+      display: -ms-inline-flexbox;
+      display: inline-flex;
+      -webkit-box-align: center;
+          -ms-flex-align: center;
+              align-items: center;
+      -webkit-box-pack: center;
+          -ms-flex-pack: center;
+              justify-content: center;
+      border: none;
+      letter-spacing: 1px;
+      font-size: 11px;
+      background-color: rgb(255, 197, 35);
+      color: rgb(0, 0, 0);
+      border-radius: 90px;
+      padding: 0 20px;
+      height: 60px;
+      min-width: 150px;
+      width: auto;
+      text-transform: uppercase;
+      font-weight: 600;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      -webkit-transition: 0.4s cubic-bezier(0, 0, 0.3642, 1);
+      transition: 0.4s cubic-bezier(0, 0, 0.3642, 1);
+    }
+    .btn1:hover{
+        -webkit-transform: scale(1.15);
+        transform: scale(1.15);
+    }
+
+    .small-yellow-btn {
+        font-size: 14px;
+        padding: 8px 16px;
+        background-color: #FFD700; /* Yellow */
+        color: #000;               /* Black text for contrast */
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    .small-yellow-btn:hover {
+        background-color: #FFC300;
+    }
+  </style>
+</head>
+<body>
+  <div class="left-panel">
+    <nav style="position: absolute; top: 20px; left: 20px;">
+      <a href="/" data-no-swup class="btn" style="color: #888; text-decoration: none; font-size: 14px;">
+          <span>← Back to Home</span>
+      </a>
+    </nav>
+        <h1>
+            Enter <span>a prompt,</span><br>
+            <strong>Generate</strong> <span>an Ad.</span>
+        </h1>
+        
+  <div class="branding">
+    Empowering Creativity<br>One Ad at a time.
+  </div>
+
+
+        <div>
+          <form  action="/team" method="POST" id="adForm">
+
+            <input type="text" name="company_name" placeholder="Company name" class="input-field" value="{{ company_name or '' }}" required><br><br>
+            
+                
+            <input type="text" name="product_name" placeholder="Product name" class="input-field" value="{{ product_name or '' }}" required><br><br>
+        
+            <textarea maxlength="200" name="product_description" placeholder="Product description (Max Words: 200)" cols="50" class="input-field" required>{{ product_description or '' }}</textarea><br><br>
+        
+            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+              <input type="submit" value="Generate Ad" data-no-swup class="btn1" id="submitBtn" style="flex: 1; min-width: 140px;">
+              <button type="button" onclick="clearForm()" class="btn1" style="background-color: #f0f0f0; color: #333; flex: 0 0 auto; min-width: 120px;">Clear</button>
+            </div>
+        
+        </form>
+
+        <!-- Loading indicator -->
+        <div id="loadingIndicator" style="display: none; text-align: center; margin-top: 20px;">
+          <div style="border: 4px solid #f3f3f3; border-top: 4px solid #FFD700; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 0 auto;"></div>
+          <p style="margin-top: 10px; font-weight: bold;">Generating your advertisement... Please wait (this may take 1-2 minutes)</p>
+        </div>
+
+        <style>
+          @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+          }
+        </style>
+
+        <script>
+          function clearForm() {
+            document.getElementsByName('company_name')[0].value = '';
+            document.getElementsByName('product_name')[0].value = '';
+            document.getElementsByName('product_description')[0].value = '';
+            
+            // Reset submit button to original state
+            var submitBtn = document.getElementById('submitBtn');
+            submitBtn.value = 'Generate Ad';
+            submitBtn.style.backgroundColor = 'rgb(255, 197, 35)'; // Original yellow
+            submitBtn.style.color = 'rgb(0, 0, 0)';
+          }
+          
+          document.getElementById('adForm').addEventListener('submit', function(e) {
+            // Show loading indicator
+            document.getElementById('loadingIndicator').style.display = 'block';
+            // Disable submit button
+            var submitBtn = document.getElementById('submitBtn');
+            submitBtn.value = 'Generating...';
+            submitBtn.disabled = true;
+            submitBtn.style.opacity = '0.6';
+            
+            // Hide any existing results during generation
+            var adOutput = document.getElementById('adOutput');
+            if (adOutput) {
+              adOutput.style.opacity = '0.5';
+            }
+          });
+
+          // Reset form state if page loads with results
+          window.addEventListener('load', function() {
+            var submitBtn = document.getElementById('submitBtn');
+            submitBtn.disabled = false;
+            submitBtn.style.opacity = '1';
+            document.getElementById('loadingIndicator').style.display = 'none';
+            
+            // Keep original yellow color and adjust text based on whether we have results
+            submitBtn.style.backgroundColor = 'rgb(255, 197, 35)'; // Always yellow
+            submitBtn.style.color = 'rgb(0, 0, 0)';
+            
+            {% if ad_script and cta %}
+            submitBtn.value = 'Generate Another';
+            {% else %}
+            submitBtn.value = 'Generate Ad';
+            {% endif %}
+          });
+        </script>
+
+        </div>
+    </div>
+           
+
+  <div class="right-panel">
+    <div class="ad-output" id="adOutput">
+      <div class="flex">
+        {% if ad_script and cta %}
+                    <div style="background-color: #f7f7f7; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+                        <h2 style="margin-bottom: 5%;">Ad Script:</h2>
+                        <h4 style="margin-bottom: 2%;"><p>{{ ad_script }}</p></h4>
+            
+                        <h2 style="margin-bottom: 5%;">CTA:</h2>
+                        <h4 style="margin-bottom: 2%;"><p>{{ cta }}</p></h4>
+                    </div>
+                {% else %}
+                    <p style="color: #999;position: center;">Generated ad content will appear here after submission.</p>
+                {% endif %}
+      </div>
+      <!-- Generated ad will appear here -->
+    </div>
+  </div>
+
+  <style>
+    .flex {
+      padding: 120px;
+      width: 100%;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+  </style>
+
+</body>
+</html>

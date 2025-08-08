@@ -1,0 +1,96 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environments
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+.venv/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Flask
+instance/
+.webassets-cache
+.env
+.env.local
+.env.production
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+database.db
+
+# Model files (too large for GitHub - use Hugging Face instead)
+promogen_final_model/
+*.safetensors
+*.bin
+*.pt
+*.pth
+
+# Temporary files
+temp/
+*.tmp
+*.log
+
+# Dataset files (potentially large)
+dataset/
+*.csv
+*.json
+large_advertisement_dataset.json
+
+# Kaggle
+kaggle.json
+
+# Upload scripts (contains tokens)
+upload_model.py
+
+# Node modules (if any)
+node_modules/
+
+# Results and outputs
+Results/
+result_images/
+
+# Compiled CSS (keep source SCSS)
+css/
+static/css/style.css
