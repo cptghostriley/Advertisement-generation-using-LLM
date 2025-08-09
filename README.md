@@ -242,7 +242,7 @@ The application uses a fine-tuned language model located in `promogen_final_mode
 
 ### Model Performance Metrics
 - **Generation Time**: 30-60 seconds (GPU) / 2-5 minutes (CPU)
-- **Model Size**: ~2.5GB
+- **Model Size**: ~5GB
 - **Memory Usage**: ~6GB during inference
 
 ## 🤖 AI Model Setup
