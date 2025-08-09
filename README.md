@@ -289,7 +289,7 @@ Visit the model repository: [Bhavin1905/Promogen-finetuned-model](https://huggin
 - We'll provide alternative download instructions
 
 **⚠️ Important Notes:**
-- Model size: ~2.5GB total
+- Model size: ~5GB total
 - Internet connection required for download
 - Ensure sufficient disk space before downloading
 
