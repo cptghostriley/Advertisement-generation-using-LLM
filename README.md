@@ -331,8 +331,8 @@ Visit the model repository: [Bhavin1905/Promogen-finetuned-model](https://huggin
 
 ## 👥 Authors
 
-- **Ashwin Mahawar** - Initial work
-- **Bhavin** - Development and optimization
+- **Ashwin Mahawar** - Development
+- **Bhavin** - Optimization and deployment
 - **Team PromoGen** - Additional contributors
 
 ## 🙏 Acknowledgments
